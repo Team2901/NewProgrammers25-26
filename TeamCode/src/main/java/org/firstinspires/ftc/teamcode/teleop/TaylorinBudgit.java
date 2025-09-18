@@ -15,6 +15,7 @@ public class TaylorinBudgit extends OpMode {
     DcMotor backRight;
     double drive;
     String taylorinBudgit = "dog";
+    double v2 = 10;
     @Override
     public void init() {
 
@@ -33,10 +34,18 @@ backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
     @Override
     public void loop() {
         telemetry.addLine(taylorinBudgit);
-        frontRight.setPower(-1*gamepad1.right_stick_y);
-        frontLeft.setPower(-1*gamepad1.right_stick_x);
-        backRight.setPower(-1*gamepad1.right_stick_y);
-        backLeft.setPower(-1*gamepad1.right_stick_x);
+  move(-gamepad1.right_stick_y, gamepad1.right_stick_x, -1*gamepad1.left_stick_y);
+    }
+
+
+    public void move(double forward, double right, double turn) {
+        telemetry.addLine(taylorinBudgit);
+        frontRight.setPower(v2 * (forward-turn-right));
+        frontLeft.setPower(v2 * (forward+turn+right));
+        backRight.setPower(v2 * (forward-turn+right));
+        backLeft.setPower(v2 * (forward+turn-right));
     }
 }
+
+
 
