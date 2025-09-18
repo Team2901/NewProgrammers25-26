@@ -26,7 +26,9 @@ public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("
 
     @Override
     public void loop() {
-move(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+
+        double joyStickAngle = Math.tan(-gamepad1.right_stick_y/gamepad1.right_stick_x);
+        move(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
 
     }
     public void move(double forward, double right, double turn) {
