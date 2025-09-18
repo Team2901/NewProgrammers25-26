@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import java.util.function.Function;
 
@@ -22,7 +23,10 @@ public class TaylorinBudgit extends OpMode {
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         backLeft = hardwareMap.dcMotor.get("backLeft");
 
-
+frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         telemetry.addLine(taylorinBudgit);
     }
 
@@ -30,7 +34,9 @@ public class TaylorinBudgit extends OpMode {
     public void loop() {
         telemetry.addLine(taylorinBudgit);
         frontRight.setPower(-1*gamepad1.right_stick_y);
-        frontRight.setPower(-1*gamepad1.right_stick_x);
+        frontLeft.setPower(-1*gamepad1.right_stick_x);
+        backRight.setPower(-1*gamepad1.right_stick_y);
+        backLeft.setPower(-1*gamepad1.right_stick_x);
     }
 }
 
