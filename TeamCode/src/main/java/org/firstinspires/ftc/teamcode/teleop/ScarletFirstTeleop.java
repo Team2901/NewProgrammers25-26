@@ -26,10 +26,15 @@ public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("
 
     @Override
     public void loop() {
-frontRight.setPower(gamepad1.right_stick_y*-speed);
-backRight.setPower(gamepad1.right_stick_y*-speed);
-frontLeft.setPower(gamepad1.left_stick_y*-speed);
-backLeft.setPower(gamepad1.left_stick_y*-speed);
 
+        double joyStickAngle = Math.tan(-gamepad1.right_stick_y/gamepad1.right_stick_x);
+        move(-gamepad1.right_stick_y, gamepad1.right_stick_x, gamepad1.left_stick_x);
+
+    }
+    public void move(double forward, double right, double turn) {
+        frontRight.setPower((forward-turn-right) *speed);
+        backRight.setPower((forward-turn+right) *speed);
+        frontLeft.setPower((forward+turn+right) *speed);
+        backLeft.setPower((forward+turn-right) *speed);
     }
 }
