@@ -46,7 +46,6 @@ public class MecanumDrive extends OpMode {
         frontRight.setDirection(DcMotor.Direction.FORWARD);
 
         imu = hardwareMap.get(IMU.class, "imu");
-        // This needs to be changed to match the orientation on your robot
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection =
                 RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD;
         RevHubOrientationOnRobot.UsbFacingDirection usbDirection =
@@ -60,18 +59,23 @@ public class MecanumDrive extends OpMode {
 
     @Override
     public void loop() {
-        telemetry.addData("robot angle", imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES));
-        telemetry.addData("x_value", gamepad1.left_stick_x);
-        telemetry.addData("y_value", gamepad1.left_stick_y);
 
-        double y = gamepad1.left_stick_y;
+
+        double y = -gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
         double rx = gamepad1.right_stick_x;
         double control_angle = Math.atan2(y, x) - Math.toRadians(90);
+        double Angle = control_angle - imu.getRobotYawPitchRollAngles().getYaw();
         double magnatude = Math.hypot(y, x);
-        double forward = Math.cos(control_angle) * magnatude;
-        double right = Math.sin(control_angle) * magnatude;
+        double forward = Math.sin(Angle) * magnatude;
+        double right = Math.cos(Angle) * magnatude;
         move(right, forward, rx);
+        telemetry.addData("robot angle", imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES));
+        telemetry.addData("x_value", gamepad1.left_stick_x);
+        telemetry.addData("y_value", gamepad1.left_stick_y);
+        telemetry.addData("Forward", forward);
+        telemetry.addData("Right", right);
+        telemetry.addData("Angle value", Angle );
 
 
     }
@@ -84,4 +88,5 @@ public class MecanumDrive extends OpMode {
 
 
     }
+
 }
