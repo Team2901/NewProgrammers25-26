@@ -56,7 +56,7 @@ backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         double x= gamepad1.right_stick_x;
 
         double magnitude=Math.hypot(x,y);
-        double angle=Math.atan2(y, x)- Math.toRadians(90);
+        double angle=Math.atan2(y, x)- Math.toRadians(90) - imu.getRobotYawPitchRollAngles().getYaw();
 
         double forward=Math.cos(angle)*magnitude;
         double right=Math.sin(angle)*magnitude;
