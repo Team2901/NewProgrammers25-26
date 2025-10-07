@@ -12,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 @TeleOp(name = "MecanumDrive-Kyle")
 public class MecanumDrive extends OpMode {
 
+    // motors
     DcMotor frontLeft;
     DcMotor frontRight;
     DcMotor backLeft;
