@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
+import com.bylazar.telemetry.PanelsTelemetry;
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import com.bylazar.telemetry.TelemetryManager;
+import com.bylazar.telemetry.TelemetryManager; //WORKS
 @TeleOp(name = "ScarletFirstTeleop")
 public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("phoebe");
     public DcMotor frontRight;
