@@ -1,9 +1,13 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.IMU;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 import java.util.function.Function;
 
@@ -15,6 +19,8 @@ public class TaylorinBudgit extends OpMode {
     DcMotor backRight;
     double drive;
     String taylorinBudgit = "dog";
+
+    IMU imu;
     double v2 = 10;
     @Override
     public void init() {
@@ -29,12 +35,32 @@ backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
 backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         telemetry.addLine(taylorinBudgit);
+
+        imu = hardwareMap.get(IMU.class, "imu");
+        // This needs to be changed to match the orientation on your robot
+        RevHubOrientationOnRobot.LogoFacingDirection logoDirection =
+                RevHubOrientationOnRobot.LogoFacingDirection.LEFT;
+        RevHubOrientationOnRobot.UsbFacingDirection usbDirection =
+                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
+
+        RevHubOrientationOnRobot orientationOnRobot = new
+                RevHubOrientationOnRobot(logoDirection, usbDirection);
+        imu.initialize(new IMU.Parameters(orientationOnRobot));
     }
 
     @Override
     public void loop() {
+        telemetry.addData("angle",imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES));
         telemetry.addLine(taylorinBudgit);
-  move(-gamepad1.right_stick_y, gamepad1.right_stick_x, -1*gamepad1.left_stick_y);
+        double y= gamepad1.right_stick_y;
+        double x= gamepad1.right_stick_x;
+
+        double magnitude=Math.hypot(x,y);
+        double angle=Math.atan2(y, x)- Math.toRadians(90) - imu.getRobotYawPitchRollAngles().getYaw();
+
+        double forward=Math.cos(angle)*magnitude;
+        double right=Math.sin(angle)*magnitude;
+        move(forward, right, -0.25*gamepad1.left_stick_y);
     }
 
 
