@@ -17,12 +17,17 @@ apply from: '../build.dependencies.gradle'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
+    compileSdk 35
 
+    defaultConfig {
+        minSdk
+    }
     packagingOptions {
         jniLibs.useLegacyPackaging true
     }
 }
 
 dependencies {
+    implementation "com.bylazer:ftcontrol:0.6.8"
     implementation project(':FtcRobotController')
 }
