@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 
-@TeleOp(name = "Clara Teleop V6")
+@TeleOp(name = "Clara Teleop V6") // teleop
 public class Clara extends OpMode {
 
    String name;

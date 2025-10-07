@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 //import com.bylazar.telemetry.TelemetryManager;
-@TeleOp(name = "ScarletFirstTeleop")
+@TeleOp(name = "ScarletFirstTeleop") // teleop
 public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("phoebe");
     public DcMotor frontRight;
     public DcMotor frontLeft;
