@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import com.bylazar.telemetry.TelemetryManager;
+//import com.bylazar.telemetry.TelemetryManager;
 @TeleOp(name = "ScarletFirstTeleop")
 public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("phoebe");
     public DcMotor frontRight;
@@ -19,7 +19,7 @@ public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("
     double wheelDiametermm = 96;
     double wheelCircumferencemm = wheelDiametermm *2 *Math.PI;
 
-    private static TelemetryManager panelsTelemetry = null;
+    //private static TelemetryManager panelsTelemetry = null;
 
     IMU imu;
     private GoBildaPinpointDriver odo;
@@ -51,8 +51,8 @@ public class ScarletFirstTeleop extends OpMode {  String scarletFirstTeleop = ("
     odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
     odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.FORWARD);
     odo.resetPosAndIMU();
-    panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
-    panelsTelemetry.addLine("Hello World");
+    //panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
+    //panelsTelemetry.addLine("Hello World");
 
 
 
